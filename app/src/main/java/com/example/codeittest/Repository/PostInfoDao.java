@@ -2,6 +2,7 @@ package com.example.codeittest.Repository;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -22,4 +23,7 @@ public interface PostInfoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPosts(List<ResultModel> resultModel);
+
+    @Delete
+    void delete(ResultModel model);
 }
