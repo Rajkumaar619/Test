@@ -14,19 +14,22 @@ public class PostRoomDBRepository {
     private PostInfoDao postInfoDao;
     LiveData<List<ResultModel>> mAllPosts;
 
-    public PostRoomDBRepository(Application application){
+    public PostRoomDBRepository(Application application) {
         PostInfoRoomDatabase db = PostInfoRoomDatabase.getDatabase(application);
         postInfoDao = db.postInfoDao();
         mAllPosts = postInfoDao.getAllPosts();
     }
 
-    public LiveData<List<ResultModel>> getAllPosts(){
+    public LiveData<List<ResultModel>> getAllPosts() {
         return mAllPosts;
     }
 
-    public void insertPosts(List<ResultModel> resultModel)
-    {
+    public void insertPosts(List<ResultModel> resultModel) {
         new insertAsyncTask(postInfoDao).execute(resultModel);
+    }
+
+    public void deletePost(ResultModel resultModel) {
+        new deletePostAsync(postInfoDao).execute(resultModel);
     }
 
     private static class insertAsyncTask extends AsyncTask<List<ResultModel>, Void, Void> {
@@ -43,4 +46,20 @@ public class PostRoomDBRepository {
             return null;
         }
     }
+
+    private static class deletePostAsync extends AsyncTask<ResultModel, Void, Void> {
+
+        private PostInfoDao mAsyncTaskDao;
+
+        deletePostAsync(PostInfoDao postInfoDao) {
+            mAsyncTaskDao = postInfoDao;
+        }
+
+        @Override
+        protected Void doInBackground(ResultModel... notes) {
+            int i=mAsyncTaskDao.delete(notes[0]);
+            return null;
+        }
+    }
+
 }

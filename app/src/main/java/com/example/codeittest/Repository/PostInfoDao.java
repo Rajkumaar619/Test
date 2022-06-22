@@ -25,5 +25,5 @@ public interface PostInfoDao {
     void insertPosts(List<ResultModel> resultModel);
 
     @Delete
-    void delete(ResultModel model);
+    int delete(ResultModel model);
 }

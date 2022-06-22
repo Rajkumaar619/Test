@@ -1,85 +1,71 @@
 package com.example.codeittest.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.codeittest.Fragment.PostDetailFragment;
+import com.example.codeittest.Fragment.PostListFragment;
 import com.example.codeittest.Models.PostDetailModel;
 import com.example.codeittest.Models.ResultModel;
 import com.example.codeittest.R;
 import com.example.codeittest.viewmodel.PostsListViewModel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class ProductDetailActivity extends AppCompatActivity implements View.OnClickListener {
-    private PostsListViewModel mViewModel;
-    private int userId;
-    private TextView txtName, txtEmail, txtTitle, txtBody;
-    private ResultModel resultModel;
-    private ProgressDialog progressDialog;
-    private LinearLayout linDelete;
+public class ProductDetailActivity extends AppCompatActivity {
+
+    private Bundle bundle;
+    private PostDetailFragment detailFragment;
+
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
-        mViewModel = new ViewModelProvider(this).get(PostsListViewModel.class);
+
+        getActionButton();
+
         if (getIntent() != null) {
-            resultModel = (ResultModel) getIntent().getSerializableExtra("PostData");
-            userId = resultModel.getUserId();
-            Log.e("UserId", userId + "");
+            bundle = new Bundle();
+            bundle.putSerializable("PostData", getIntent().getSerializableExtra("PostData"));
         }
-        initView();
-        getAuthorDetails(userId);
+
+        callFragment(bundle);
+
     }
 
-    private void getAuthorDetails(int userId) {
-        progressDialog = ProgressDialog.show(this, "Loading...", "Please wait...", true);
-        mViewModel.getDetails(userId).observe(this, postDetailModels -> {
-            if (progressDialog != null && progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }
-            if (postDetailModels != null) {
-                Log.e("UserEmail", postDetailModels.toString());
-                for (PostDetailModel detailModel : postDetailModels) {
-                    if (userId == detailModel.getId()) {
-                        setData(detailModel);
-                    }
-                }
-            }
-        });
+    private void getActionButton() {
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
-    private void setData(PostDetailModel detailModel) {
-        txtName.setText(detailModel.getName());
-        txtEmail.setText(detailModel.getEmail());
-        txtTitle.setText(resultModel.getTitle());
-        txtBody.setText(resultModel.getBody());
+    private void callFragment(Bundle bundle) {
+        detailFragment = new PostDetailFragment();
+        detailFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, detailFragment)
+                .commit();
     }
+
 
     @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.linDelete) {
-            Toast.makeText(this, "Deleted Clicked", Toast.LENGTH_SHORT).show();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-
-    private void initView() {
-        txtName = findViewById(R.id.txtName);
-        txtEmail = findViewById(R.id.txtEmail);
-        txtTitle = findViewById(R.id.txtTitle);
-        txtBody = findViewById(R.id.txtBody);
-        linDelete = findViewById(R.id.linDelete);
-
-        linDelete.setOnClickListener(this);
-    }
 }

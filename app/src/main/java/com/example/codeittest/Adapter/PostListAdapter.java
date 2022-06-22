@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,8 +15,11 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codeittest.Activity.ProductDetailActivity;
+import com.example.codeittest.ClickEvent.OnClickListener;
 import com.example.codeittest.Models.ResultModel;
 import com.example.codeittest.R;
+import com.example.codeittest.Util.Constant;
+import com.example.codeittest.viewmodel.PostsListViewModel;
 
 import java.util.List;
 
@@ -24,9 +29,13 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
     private List<ResultModel> mUsers;
     private Context context;
     private ResultModel resultModel;
+    private OnClickListener mClickListener;
+    private PostsListViewModel mViewModel;
 
-    public PostListAdapter(Context context) {
+
+    public PostListAdapter(Context context, OnClickListener onClickListener) {
         this.context = context;
+        mClickListener = onClickListener;
         inflater = LayoutInflater.from(context);
     }
 
@@ -46,18 +55,17 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
             holder.txtBody.setText(resultModel.getBody());
         }
 
-        holder.postCard.setOnClickListener(new View.OnClickListener() {
+        holder.linPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, resultModel.getUserId() + "", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(context, ProductDetailActivity.class);
-                intent.putExtra("PostData",resultModel);
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                intent.putExtra("PostData", resultModel);
                 context.startActivity(intent);
             }
         });
     }
 
-    public void setWords(List<ResultModel> users) {
+    public void setPosts(List<ResultModel> users) {
         mUsers = users;
         notifyDataSetChanged();
     }
@@ -71,17 +79,42 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         }
     }
 
-    public class PostViewHolder extends RecyclerView.ViewHolder {
+    public void removePost(int pos) {
+        int newPosition = pos;
+        mUsers.remove(newPosition);
+        notifyItemRemoved(newPosition);
+        notifyItemRangeChanged(newPosition, mUsers.size());
+    }
+
+    public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView txtTitle, txtBody;
-        CardView postCard;
+        LinearLayout linPost;
+        ImageView imgDelete;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtTitle = itemView.findViewById(R.id.mTitle);
             txtBody = itemView.findViewById(R.id.mBody);
-            postCard = itemView.findViewById(R.id.postCard);
+            linPost = itemView.findViewById(R.id.linPost);
+            imgDelete = itemView.findViewById(R.id.imgDelete);
+
+            linPost.setOnClickListener(this);
+            imgDelete.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.linPost:
+                    mClickListener.onClick(Constant.POST_DETAIL, resultModel, getAdapterPosition());
+                    break;
+
+                case R.id.imgDelete:
+                    mClickListener.onClick(Constant.DELETE, resultModel, getAdapterPosition());
+                    break;
+            }
         }
     }
 }

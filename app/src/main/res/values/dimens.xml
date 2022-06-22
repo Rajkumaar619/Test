@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="logo_height">125dp</dimen>
+    <dimen name="logo_width">125dp</dimen>
+    <dimen name="login_logo_height">100dp</dimen>
+    <dimen name="login_logo_width">100dp</dimen>
+    <dimen name="login_logo_height_in">60dp</dimen>
+    <dimen name="login_logo_width_in">60dp</dimen>
+
+    <dimen name="edittext_margin">8dp</dimen>
+    <dimen name="edittext_round_radius">25dp</dimen>
+
+
+
+    <!--text-->
+    <dimen name="logo_textsize">34sp</dimen>
+    <dimen name="logo_textsize_in">24sp</dimen>
+    <dimen name="login_icon_h">28dp</dimen>
+    <dimen name="login_icon_w">28dp</dimen>
+    <dimen name="button_radius">25dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_32dp">32dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
+    <dimen name="dimen_3dp">3dp</dimen>
+    <dimen name="dimen_2dp">2dp</dimen>
+    <dimen name="toolbar_text">14dp</dimen>
+    <dimen name="dimen_4dp">4dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="dimen_16dp">16dp</dimen>
+    <dimen name="dimen_14dp">14dp</dimen>
+    <dimen name="nav_profile_width">60dp</dimen>
+    <dimen name="nav_profile_height">60dp</dimen>
+    <dimen name="ic_plus_width">28dp</dimen>
+    <dimen name="dimen_80dp">80dp</dimen>
+    <dimen name="quiz_h">40dp</dimen>
+    <dimen name="quiz_w">40dp</dimen>
+    <dimen name="dimen_60dp">60dp</dimen>
+    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="dimen_24dp">24dp</dimen>
+    <dimen name="dimen_12dp">12dp</dimen>
+    <dimen name="dimen_50dp">50dp</dimen>
+    <dimen name="dimen_25dp">25dp</dimen>
+    <dimen name="dimen_6dp">6dp</dimen>
+    <dimen name="dimen_180dp">180dp</dimen>
+    <dimen name="visa_card_h">180dp</dimen>
+    <dimen name="toolbar_h">80dp</dimen>
+    <dimen name="dimen_160dp">160dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dimen_52dp">52dp</dimen>
+    <dimen name="dimen_150dp">150dp</dimen>
+    <dimen name="dimen_1dp">1dp</dimen>
+
+</resources>

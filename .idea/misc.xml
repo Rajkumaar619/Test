@@ -3,10 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/drawable-xhdpi/dialog_bg.xml" value="0.148" />
         <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/drawable/circular_background.xml" value="0.148" />
+        <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/drawable/line_divider.xml" value="0.148" />
+        <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/drawable/list_item_border.xml" value="0.148" />
+        <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/drawable/round_image_bg.xml" value="0.148" />
         <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/drawable/rounded_button.xml" value="0.148" />
+        <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/drawable/rounded_button_white_bg.xml" value="0.148" />
+        <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/drawable/single_line_border.xml" value="0.148" />
         <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/layout/activity_product_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/layout/custom_dialog.xml" value="0.203125" />
+        <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/layout/fragment_post_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/layout/fragment_post_list.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidDemo/CodeITTest/app/src/main/res/layout/product_item_view.xml" value="0.25" />
       </map>

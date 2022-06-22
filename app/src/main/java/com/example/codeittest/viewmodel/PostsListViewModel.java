@@ -46,4 +46,8 @@ public class PostsListViewModel extends AndroidViewModel {
         postLiveData = webServiceRepository.getAuthor(userId);
         return postLiveData;
     }
+
+    public void deletePost(ResultModel resultModel) {
+        postRoomDBRepository.deletePost(resultModel);
+    }
 }
