@@ -22,13 +22,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.codeittest.Activity.ProductDetailActivity;
 import com.example.codeittest.Adapter.PostListAdapter;
 import com.example.codeittest.ClickEvent.OnClickListener;
+import com.example.codeittest.Dialog.CustomDialog;
 import com.example.codeittest.Models.ResultModel;
 import com.example.codeittest.R;
 import com.example.codeittest.Util.Constant;
 import com.example.codeittest.viewmodel.PostsListViewModel;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PostListFragment extends Fragment implements View.OnClickListener {
     private View mView;
@@ -50,20 +50,14 @@ public class PostListFragment extends Fragment implements View.OnClickListener {
         mView = inflater.inflate(R.layout.fragment_post_list, container, false);
         mViewModel = new ViewModelProvider(this).get(PostsListViewModel.class);
         initViews();
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mSwipeRefreshLayout.setRefreshing(false);
-                getPosts("Second");
-            }
-        });
+
         return mView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getPosts("First");
+        getPosts();
         setAdapter();
 
     }
@@ -89,7 +83,7 @@ public class PostListFragment extends Fragment implements View.OnClickListener {
                     requireActivity().startActivity(intent);
                     Toast.makeText(getActivity(), type, Toast.LENGTH_SHORT).show();
                 } else if (type.equalsIgnoreCase(Constant.DELETE)) {
-                    mViewModel.deletePost(resultModel);
+                    new CustomDialog().getDialog(getActivity(), mViewModel, resultModel, Constant.First);
                 }
             }
         });
@@ -97,7 +91,7 @@ public class PostListFragment extends Fragment implements View.OnClickListener {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    private void getPosts(String type) {
+    private void getPosts() {
         progressDialog = ProgressDialog.show(getActivity(), "Loading...", "Please wait...", true);
         mViewModel.getAllPosts().observe(getActivity(), new Observer<List<ResultModel>>() {
             @Override
@@ -113,7 +107,8 @@ public class PostListFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.linRefresh) {
-            Toast.makeText(getActivity(), "Refresh Clicked", Toast.LENGTH_SHORT).show();
+            getPosts();
+            Toast.makeText(getActivity(), "Refreshing....", Toast.LENGTH_SHORT).show();
         }
     }
 }

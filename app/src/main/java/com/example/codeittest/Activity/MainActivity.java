@@ -1,9 +1,7 @@
 package com.example.codeittest.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.example.codeittest.Fragment.PostListFragment;
 import com.example.codeittest.R;
 

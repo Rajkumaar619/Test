@@ -1,26 +1,14 @@
 package com.example.codeittest.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
-import androidx.lifecycle.ViewModelProvider;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.codeittest.Fragment.PostDetailFragment;
 import com.example.codeittest.Fragment.PostListFragment;
-import com.example.codeittest.Models.PostDetailModel;
-import com.example.codeittest.Models.ResultModel;
 import com.example.codeittest.R;
-import com.example.codeittest.viewmodel.PostsListViewModel;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class ProductDetailActivity extends AppCompatActivity {

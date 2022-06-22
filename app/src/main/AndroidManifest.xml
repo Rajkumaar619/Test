@@ -16,6 +16,7 @@
         android:theme="@style/Theme.CodeITTest"
         tools:targetApi="31">
         <activity
+            android:theme="@style/Theme.CodeITTestAction"
             android:name=".Activity.ProductDetailActivity"
             android:exported="false" />
         <activity
